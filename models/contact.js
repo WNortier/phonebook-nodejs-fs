@@ -1,17 +1,15 @@
 //@ts-nocheck
+const shortid = require('shortid');
+
 var contactList = [];
 
 module.exports = class Contact {
   constructor(name, email, number, address) {
-    this.id = this.generateId();
+    this.id = shortid.generate();
     this.name = name;
     this.email = email;
     this.number = number;
     this.address = address;
-  }
-
-  generateId() {
-    return Math.ceil(Math.random() * 1000000);
   }
 
   save() {

@@ -1,7 +1,8 @@
 <main>
   <div class="container">
+    {{#if contacts}}
   {{#each contacts}}
-    <form method="POST" action="/delete/{{id}}" id="card" class="card">
+    <form id="card" class="card">
       <h2>Contact Details</h2>
         <div class="card-control">
         <label for="id">Id</label>
@@ -23,10 +24,14 @@
         <label for="address">Address</label>
         <p id="address">{{address}}</p>
       </div>
-      {{!-- <button type="submit">Edit</button> --}}
-      <button type="submit">Delete</button>
+      <input type="hidden" name="edit" value="true">
+      <button formmethod="get" formaction="/edit-product/{{id}}?edit=true" type="submit">Edit</button>
+      <button formmethod="post" formaction="/delete/{{id}}" type="submit">Delete</button>
     </form>
     {{/each}}
+    {{else}}
+    <h2>No contacts found...</h2>
+    {{/if}}
   </div>
 </main>
 
