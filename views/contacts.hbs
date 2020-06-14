@@ -1,8 +1,12 @@
 <main>
   <div class="container">
   {{#each contacts}}
-    <div action="" id="card" class="card">
+    <form method="POST" action="/delete/{{id}}" id="card" class="card">
       <h2>Contact Details</h2>
+        <div class="card-control">
+        <label for="id">Id</label>
+        <p id="id">{{id}}</p>
+      </div>
       <div class="card-control">
         <label for="name">Name</label>
         <p id="name">{{name}}</p>
@@ -19,8 +23,9 @@
         <label for="address">Address</label>
         <p id="address">{{address}}</p>
       </div>
-      <button type="submit">Edit</button>
-    </div>
+      {{!-- <button type="submit">Edit</button> --}}
+      <button type="submit">Delete</button>
+    </form>
     {{/each}}
   </div>
 </main>

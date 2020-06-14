@@ -31,5 +31,6 @@ app.use((req, res, next) => {
 });
 
 const port = 5010;
-app.listen(port);
-console.log(`App listening on port ${port}`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});

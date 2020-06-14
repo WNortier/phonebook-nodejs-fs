@@ -1,27 +1,35 @@
 //@ts-nocheck
-
-const contactList = [];
+var contactList = [];
 
 module.exports = class Contact {
-  constructor(name, email, number, address){
+  constructor(name, email, number, address) {
+    this.id = this.generateId();
     this.name = name;
     this.email = email;
     this.number = number;
     this.address = address;
   }
 
-  save() {
-    contactList.push(this)
-    return contactList
+  generateId() {
+    return Math.ceil(Math.random() * 1000000);
   }
 
-  static deleteContacts(){
+  save() {
+    contactList.push(this);
+    return contactList;
+  }
+
+  static deleteContacts() {
     contactList.length = 0;
   }
 
-  static getContacts(){
-    return contactList
+  static deleteContact(index) {
+    let contacts = [...contactList];
+    contacts.splice(index, 1);
+    contactList = contacts;
   }
 
-}
-
+  static getContacts() {
+    return contactList;
+  }
+};
