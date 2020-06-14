@@ -6,9 +6,9 @@ const {
   deleteContacts,
   getContacts,
   deleteContact,
+  updateContact,
 } = require('../models/contact');
 const Contact = require('../models/contact');
-const { updateContact } = require('../models/contact');
 
 router.get('/about', (req, res) => {
   res.render('about', {
@@ -44,6 +44,7 @@ router.post('/contact', (req, res) => {
       aboutCSS: false,
       count: getContacts().length,
       contact: contact,
+      success: 'success',
     });
   } else {
     let contact = new Contact(
@@ -53,6 +54,7 @@ router.post('/contact', (req, res) => {
       req.body.address
     );
     contact.save();
+    req.flash('info', 'Contact added to phonebook');
     res.status(201).render('add', {
       pageTitle: 'Add Contact',
       addCSS: true,

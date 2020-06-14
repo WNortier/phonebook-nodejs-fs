@@ -44,6 +44,7 @@
           {{/if}}
           <small>Error Message</small>
         </div>
+        <h5 class="flash">{{messages.info}}</h5>
         {{#if contact}}
         <button formmethod="POST" formaction="/edit-product/{{contact.id}}" type="submit">Submit</button>
         {{else}}

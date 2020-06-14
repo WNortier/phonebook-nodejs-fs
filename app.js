@@ -2,9 +2,19 @@
 const express = require('express');
 const path = require('path');
 
+const flash = require('express-flash')
+const session = require('express-session')
 const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
+
 const app = express();
+
+app.use(session({
+  secret: "gr33np4r4d153",
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
 
 app.engine(
   'hbs',
@@ -19,6 +29,7 @@ app.set('view engine', 'hbs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'public')));
 
