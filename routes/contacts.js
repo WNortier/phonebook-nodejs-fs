@@ -8,6 +8,7 @@ const {
   deleteContact,
 } = require('../models/contact');
 const Contact = require('../models/contact');
+const { updateContact } = require('../models/contact');
 
 router.get('/about', (req, res) => {
   res.render('about', {
@@ -28,46 +29,51 @@ router.get('/', (req, res) => {
   });
 });
 
-
-router.post('/add-contact', (req, res) => {
-  let contact = new Contact(
-    req.body.name,
-    req.body.email,
-    req.body.number,
-    req.body.address
-  );
-  contact.save();
-  res.status(201).render('add', {
-    pageTitle: 'Add Contact',
-    addCSS: true,
-    contactCSS: false,
-    aboutCSS: false,
-    count: getContacts().length,
-  });
+router.post('/contact', (req, res) => {
+  if (req.query.edit !== undefined) {
+    const id = req.query.id;
+    const contacts = getContacts();
+    const index = contacts.findIndex((c) => {
+      return c.id == id;
+    });
+    const contact = contacts[index];
+    res.status(201).render('add', {
+      pageTitle: 'Add Contact',
+      addCSS: true,
+      contactCSS: false,
+      aboutCSS: false,
+      count: getContacts().length,
+      contact: contact,
+    });
+  } else {
+    let contact = new Contact(
+      req.body.name,
+      req.body.email,
+      req.body.number,
+      req.body.address
+    );
+    contact.save();
+    res.status(201).render('add', {
+      pageTitle: 'Add Contact',
+      addCSS: true,
+      contactCSS: false,
+      aboutCSS: false,
+      count: getContacts().length,
+    });
+  }
 });
 
-router.get('/edit-product/:id', (req, res) => {
+router.post('/edit-product/:id', (req, res) => {
   const { id } = req.params;
-  const { edit } = JSON.parse(req.query.edit);
-  const contacts = getContacts();
-  const index = contacts.findIndex((c) => {
-    return c.id == id;
-  });
-  const contact = contacts[index]
-
-  console.log(edit)
-
+  updateContact(id, req.body);
   res.status(201).render('add', {
     pageTitle: 'Add Contact',
     addCSS: true,
     contactCSS: false,
     aboutCSS: false,
     count: getContacts().length,
-    contact: contact,
-    edit: edit
   });
 });
-
 
 router.post('/delete-all', (req, res) => {
   deleteContacts();

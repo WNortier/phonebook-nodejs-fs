@@ -27,6 +27,23 @@ module.exports = class Contact {
     contactList = contacts;
   }
 
+  static updateContact(id, data) {
+    const contacts = [...contactList];
+
+    const index = contacts.findIndex((c) => {
+      return c.id == id;
+    });
+
+    const contact = contacts[index];
+    contact.name = data.name;
+    contact.email = data.email;
+    contact.number = data.number;
+    contact.address = data.address;
+
+    contacts[index] = contact
+    contactList = contacts
+  }
+
   static getContacts() {
     return contactList;
   }

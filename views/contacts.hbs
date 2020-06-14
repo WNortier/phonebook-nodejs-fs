@@ -24,8 +24,7 @@
         <label for="address">Address</label>
         <p id="address">{{address}}</p>
       </div>
-      <input type="hidden" name="edit" value="true">
-      <button formmethod="get" formaction="/edit-product/{{id}}?edit=true" type="submit">Edit</button>
+      <button formmethod="post" formaction="/contact?edit=true&id={{id}}" type="submit">Edit</button>
       <button formmethod="post" formaction="/delete/{{id}}" type="submit">Delete</button>
     </form>
     {{/each}}

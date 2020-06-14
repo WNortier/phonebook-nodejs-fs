@@ -45,9 +45,9 @@
           <small>Error Message</small>
         </div>
         {{#if contact}}
-        <button formmethod="POST" formaction="/edit-contact/{{contact.id}}" type="submit">Submit</button>
+        <button formmethod="POST" formaction="/edit-product/{{contact.id}}" type="submit">Submit</button>
         {{else}}
-        <button formmethod="POST" formaction="/add-contact" type="submit">Submit</button>
+        <button formmethod="POST" formaction="/contact" type="submit">Submit</button>
         {{/if}}
       </form>
     </div>

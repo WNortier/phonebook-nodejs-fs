@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "express-router": "0.0.1",
+    "flash": "^1.1.0",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
