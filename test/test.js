@@ -13,7 +13,7 @@ describe('Contacts', () => {
     it('should get all students record', (done) => {
       chai
         .request(app)
-        .get('/dummy')
+        .get('/about')
         .end((err, res) => {
           res.should.have.status(200);
           //   res.body.should.be.a('object');

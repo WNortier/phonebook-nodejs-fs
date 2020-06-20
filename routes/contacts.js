@@ -11,7 +11,7 @@ const {
 const Contact = require('../models/contact');
 
 router.get('/about', (req, res) => {
-  res.render('about', {
+  res.status(200).render('about', {
     pageTitle: 'About',
     aboutCSS: true,
     contactCSS: false,

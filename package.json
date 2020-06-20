@@ -4,7 +4,7 @@
   "description": "phonebook-app",
   "main": "app.js",
   "scripts": {
-    "test": "mocha tests/*.js --exit",
+    "test": "mocha test/*.js --exit",
     "start": "node app.js",
     "mocha": "./node_modules/bin/mocha"
   },
